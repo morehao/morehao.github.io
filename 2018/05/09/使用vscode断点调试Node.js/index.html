@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        毛浩先生
+        使用vscode断点调试Node.js｜毛浩先生
         
     </title>
 
-    <link rel="canonical" href="https://morehao.github.io/archives/">
+    <link rel="canonical" href="https://morehao.github.io/2018/05/09/使用vscode断点调试Node.js/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -123,71 +123,127 @@
 </script>
 
 <!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
 <style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
     
     header.intro-header {
         background-image: url('')
     }
+
     
 </style>
 
-<!-- Page Header -->
 <header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>archives</h1>
-                    <span class="subheading">可以根据归档日期检索所有文件</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>使用vscode断点调试Node.js</h1>
+                    
+                    <span class="meta">
+                         作者 毛浩先生
+                        <span>
+                          日期 2018-05-09
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="post-title-haojen">
+        <span>
+            使用vscode断点调试Node.js
+        </span>
+    </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- archive list -->
-            
-				
-				
-				
-					
-					
-					<div class="archive archive-year" data-date="2018">
-						<h2 class="archive-title">
-						<span class="fa fa-archive">
-							<a href="/archives/2018">2018</a>
-						</span>
-						</h2>
-				
-				
-					
-					
-					<div class="archive archive-month" data-date="201805">
-						<h3 class="archive-title">
-							<a href="/archives/2018/05">05</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/05/09/使用vscode断点调试Node.js/">
-                        <h4 class="post-title">
-                            使用vscode断点调试Node.js
-                        </h4>
-                        
-                    </a>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>这是个告别console的开始【手动捂脸】。</p>
+<p>首先，打开虫子，进入调试页面。</p>
+<p>点击绿色的按钮，开始调试。</p>
+<p>选择环境Node.js。</p>
+<p>选择完成之后，生成一个.vscode文件夹，文件夹下有个launch.json文件。</p>
+<p>将【program】字段的值修改为自己程序的入口文件，开始调试时会从这个入口启动程序，我的程序的入口为server.js，修改如下：</p>
+<p>修改完成后，点击绿色按钮，开始调试程序。</p>
+<p>接下来用postman请求程序的接口，返现程序已经启动，并且返回了预期的数据。</p>
+<p>接下来就是给程序设置断点，打开下想要设置断点的文件，我以刚才postman请求的用户详情接口为例，点击行号左边变为红点即设置好了断点。</p>
+<p>再次请求用户详情接口，调试面板出现如下变化。其中划红线处按钮依次为继续、单步调试、单步跳出、重启、停止调试，在调试面板左侧可以监听变量和调用堆栈的情况等。</p>
+<p>同时，将鼠标放在当前执行断点之前的参数或者变量上可以查看参数或者变量的详情。</p>
+<p>好了，从此以后，就可以用vscode愉快地调试代码了。</p>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
                 </div>
-				<hr>
-				</div>
-            
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
