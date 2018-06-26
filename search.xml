@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Node回调函数改写]]></title>
+    <url>%2F2018%2F06%2F26%2FNode%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%94%B9%E5%86%99%2F</url>
+    <content type="text"><![CDATA[以读取文件为例，首先，创建文件a.txt，文件内写入内容Hello world!。 回调函数写法const fs = require('fs')fs.readFile('./a.txt', 'utf-8', (err, data) =&gt; &#123; if (err) throw err console.log(data)&#125;) Promise写法const fs = require('fs')function getTxt (path) &#123; return new Promise((resolve, reject) =&gt; &#123; fs.readFile(path, 'utf-8', (err, data) =&gt; &#123; if (err) reject(err) resolve(data) &#125;) &#125;)&#125;getTxt('./a.txt') .then(rst =&gt; console.log(rst)) Generator写法const fs = require('fs')function getTxt (path) &#123; return new Promise((resolve, reject) =&gt; &#123; fs.readFile(path, 'utf-8', (err, data) =&gt; &#123; if (err) reject(err) resolve(data) &#125;) &#125;)&#125;function * fun () &#123; yield getTxt('./a.txt')&#125;const run = fun()run.next().value.then(data =&gt; console.log(data)) async/await写法const fs = require('fs')function getTxt (path) &#123; return new Promise((resolve, reject) =&gt; &#123; fs.readFile(path, 'utf-8', (err, data) =&gt; &#123; if (err) reject(err) resolve(data) &#125;) &#125;)&#125;async function run (params) &#123; const file = await getTxt(params) console.log(file) return file&#125;run('./a.txt') bluebird写法const Promise = require('bluebird')const fs = Promise.promisifyAll(require('fs'))function getTxt (filepath) &#123; return fs.readFileSync(filepath, 'utf-8')&#125;console.log(getTxt('./a.txt'))]]></content>
+      <tags>
+        <tag>Node.js学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[使用VScode断点调试Node.js]]></title>
     <url>%2F2018%2F05%2F09%2F%E4%BD%BF%E7%94%A8VScode%E6%96%AD%E7%82%B9%E8%B0%83%E8%AF%95Node-js%2F</url>
     <content type="text"><![CDATA[这是个告别console的开始【手动捂脸】。 首先，打开虫子，进入调试页面。 点击绿色的按钮，开始调试。 选择环境Node.js。 选择完成之后，生成一个.vscode文件夹，文件夹下有个launch.json文件。 将【program】字段的值修改为自己程序的入口文件，开始调试时会从这个入口启动程序，我的程序的入口为server.js，修改如下： 修改完成后，点击绿色按钮，开始调试程序。 接下来用postman请求程序的接口，返现程序已经启动，并且返回了预期的数据。 接下来就是给程序设置断点，打开下想要设置断点的文件，我以刚才postman请求的用户详情接口为例，点击行号左边变为红点即设置好了断点。 再次请求用户详情接口，调试面板出现如下变化。其中划红线处按钮依次为继续、单步调试、单步跳出、重启、停止调试，在调试面板左侧可以监听变量和调用堆栈的情况等。 同时，将鼠标放在当前执行断点之前的参数或者变量上可以查看参数或者变量的详情。 好了，从此以后，就可以用VScode愉快地调试代码了。]]></content>
