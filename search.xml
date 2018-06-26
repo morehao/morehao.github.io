@@ -4,9 +4,9 @@
     <title><![CDATA[Node回调函数改写]]></title>
     <url>%2F2018%2F06%2F26%2FNode%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E6%94%B9%E5%86%99%2F</url>
     <content type="text"><![CDATA[以读取文件为例，首先，创建文件a.txt，文件内写入内容Hello world!。 回调函数写法const fs = require('fs')fs.readFile('./a.txt', 'utf-8', (err, data) =&gt; &#123; if (err) throw err console.log(data)&#125;) Promise写法const fs = require('fs')function getTxt (path) &#123; return new Promise((resolve, reject) =&gt; &#123; fs.readFile(path, 'utf-8', (err, data) =&gt; &#123; if (err) reject(err) resolve(data) &#125;) &#125;)&#125;getTxt('./a.txt') .then(rst =&gt; console.log(rst)) Generator写法const fs = require('fs')function getTxt (path) &#123; return new Promise((resolve, reject) =&gt; &#123; fs.readFile(path, 'utf-8', (err, data) =&gt; &#123; if (err) reject(err) resolve(data) &#125;) &#125;)&#125;function * fun () &#123; yield getTxt('./a.txt')&#125;const run = fun()run.next().value.then(data =&gt; console.log(data)) async/await写法const fs = require('fs')function getTxt (path) &#123; return new Promise((resolve, reject) =&gt; &#123; fs.readFile(path, 'utf-8', (err, data) =&gt; &#123; if (err) reject(err) resolve(data) &#125;) &#125;)&#125;async function run (params) &#123; const file = await getTxt(params) console.log(file) return file&#125;run('./a.txt') bluebird写法const Promise = require('bluebird')const fs = Promise.promisifyAll(require('fs'))function getTxt (filepath) &#123; return fs.readFileSync(filepath, 'utf-8')&#125;console.log(getTxt('./a.txt'))]]></content>
-      <tags>
-        <tag>Node.js学习</tag>
-      </tags>
+      <categories>
+        <category>Node.js学习</category>
+      </categories>
   </entry>
   <entry>
     <title><![CDATA[使用VScode断点调试Node.js]]></title>
