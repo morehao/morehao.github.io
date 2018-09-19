@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="morehao&apos;blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="毛浩先生">
-<meta property="og:url" content="https://morehao.github.io/index.html">
+<meta name="description" content="技术栈 平台： Node.js（v8.9.3） 框架：Express（v4.16.0） 数据库：MongoDB（v3.4.14）  开发环境 Node相关：下载链接 MongoDB相关：下载链接  Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不再赘述。 相关规范相关规范主要包括代码规范、Git commit规范和API接口文档规范。 代码规范代码规范采用JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node+Express搭建个人博客（纯后端）-开发准备（二）">
+<meta property="og:url" content="https://morehao.github.io/2018/09/19/Node-Express搭建个人博客（纯后端）-开发准备（二）/index.html">
 <meta property="og:site_name" content="毛浩先生">
-<meta property="og:description" content="morehao&apos;blog">
+<meta property="og:description" content="技术栈 平台： Node.js（v8.9.3） 框架：Express（v4.16.0） 数据库：MongoDB（v3.4.14）  开发环境 Node相关：下载链接 MongoDB相关：下载链接  Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不再赘述。 相关规范相关规范主要包括代码规范、Git commit规范和API接口文档规范。 代码规范代码规范采用JavaScript">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p8t43f2za.bkt.clouddn.com/apidoc-screen1.jpg">
+<meta property="og:image" content="http://p8t43f2za.bkt.clouddn.com/apidoc-screen2.jpg">
+<meta property="og:updated_time" content="2018-09-19T10:14:52.370Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="毛浩先生">
-<meta name="twitter:description" content="morehao&apos;blog">
+<meta name="twitter:title" content="Node+Express搭建个人博客（纯后端）-开发准备（二）">
+<meta name="twitter:description" content="技术栈 平台： Node.js（v8.9.3） 框架：Express（v4.16.0） 数据库：MongoDB（v3.4.14）  开发环境 Node相关：下载链接 MongoDB相关：下载链接  Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不再赘述。 相关规范相关规范主要包括代码规范、Git commit规范和API接口文档规范。 代码规范代码规范采用JavaScript">
+<meta name="twitter:image" content="http://p8t43f2za.bkt.clouddn.com/apidoc-screen1.jpg">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="https://morehao.github.io/"/>
+  <link rel="canonical" href="https://morehao.github.io/2018/09/19/Node-Express搭建个人博客（纯后端）-开发准备（二）/"/>
 
 
 
 
 
-  <title>毛浩先生</title>
+  <title>Node+Express搭建个人博客（纯后端）-开发准备（二） | 毛浩先生</title>
   
 
 
@@ -162,8 +166,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -290,9 +293,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -322,9 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/19/Node-Express搭建个人博客（纯后端）-开发准备（二）/" itemprop="url">Node+Express搭建个人博客（纯后端）-开发准备（二）</a></h1>
+          <h1 class="post-title" itemprop="name headline">Node+Express搭建个人博客（纯后端）-开发准备（二）</h1>
         
 
         <div class="post-meta">
@@ -438,28 +439,59 @@
       
 
       
-        
-          
-          技术栈
-平台： Node.js（v8.9.3）
-框架：Express（v4.16.0）
-数据库：MongoDB（v3.4.14）
+        <h1 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h1><ul>
+<li>平台： Node.js（v8.9.3）</li>
+<li>框架：Express（v4.16.0）</li>
+<li>数据库：MongoDB（v3.4.14）</li>
+</ul>
+<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><ul>
+<li>Node相关：<a href="http://nodejs.cn/download/" target="_blank" rel="noopener">下载链接</a></li>
+<li>MongoDB相关：<a href="https://www.mongodb.com/download-center?jmp=nav#community" target="_blank" rel="noopener">下载链接</a></li>
+</ul>
+<p>Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不再赘述。</p>
+<h1 id="相关规范"><a href="#相关规范" class="headerlink" title="相关规范"></a>相关规范</h1><p>相关规范主要包括<code>代码规范</code>、<code>Git commit规范</code>和<code>API接口文档规范</code>。</p>
+<h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><p>代码规范采用<code>JavaScript Standard Style</code>,以下简称<code>standard规范</code>。至于为什么使用这个代码规范，没有什么特殊原因，这是我使用过的第一个代码规范，是我规范自己代码的开始，习惯而已，并且github上的start数也不算少。<code>standard规范</code>相比较<code>ESLint</code>而言，最舒服的一点就是不用配置，对我影响最大的一点是代码中再也没有出现分号，并且强迫症再也受不了代码中有分号【捂脸】，以至于后来使用<code>ESLint</code>时，也要配置为可以不写分号【再次捂脸】。</p>
+<p>通过代码规范，可以在编程过程中避免一些低级错误，比如使用未定义的变量等，同时可以规范自己的代码书写风格，有了规范代码的习惯，写出来的代码赏心悦目，看着也舒服很多，一定程度上增加了代码的可读性，工作效率的提升也是必然的事情。</p>
+<p>我听说过，有的团队的代码规范及其严格，比如一行代码最大字符长度不能超过120甚至80，每个函数的代码行数不能超过50行等，存在必有意义吧，起初没必要对自己这么严格，但是代码规范还是要重视起来的。</p>
+<h3 id="工具配合"><a href="#工具配合" class="headerlink" title="工具配合"></a>工具配合</h3><p>我使用的编辑器是<code>VS Code</code>,可以安装<code>StandardJS</code>插件，非常方便。</p>
+<p>同时可以配合一个npm的库包<code>pre-commit</code>进行代码规范，因为不规范的代码是不会影响程序的正常运行的，但我们使用代码规范的目的就是希望提交到代码仓库的代码都是规范的，<code>pre-commit</code>的作用就是在进行<code>commit</code>操作时检测所有代码是否符合<code>standard规范</code>，如果不符合则不允许提交代码。</p>
+<h3 id="相关参考"><a href="#相关参考" class="headerlink" title="相关参考"></a>相关参考</h3><p>在<code>standard规范</code>的文档中，有关于规范的细则和使用过程中可能出现的问题。</p>
+<p><a href="https://standardjs.com/readme-zhcn.html" target="_blank" rel="noopener">standard规范的中文文档</a></p>
+<p><a href="https://github.com/standard/standard" target="_blank" rel="noopener">standard规范的github链接</a></p>
+<p><a href="https://www.npmjs.com/package/pre-commit" target="_blank" rel="noopener">pre-commit链接</a></p>
+<h2 id="Git-commit规范"><a href="#Git-commit规范" class="headerlink" title="Git commit规范"></a>Git commit规范</h2><p>我们进行<code>commit</code>操作时，填写的相关说明一定是要有意义的，我记得在学习编程的最开始，我们的对<code>git</code>的命令以及操作规范不清楚，所以<code>commit</code>的信息乱七八糟，经常是“解决冲突”、“修改bug”这样的说明，在被批评之后，也仅仅是<code>commit</code>信息不再胡写。</p>
+<p>项目的commit message规范使用的是主流的<code>Angular</code>规范，在实际的团队开发中，通过对commit日志的规范，有助于代码的review<br>、日志的自动化生成以及项目发版，同时能够很好地熟悉git工作流。在该项目中不涉及发版，只是简单的开发，所以只是遵循了部分规范，在实际工作中，如果团队刚好涉及到git工作流的规范，那肯定是要遵循的。</p>
+<h3 id="Git-commit日志基本规范"><a href="#Git-commit日志基本规范" class="headerlink" title="Git commit日志基本规范"></a>Git commit日志基本规范</h3><h4 id="基础语法模板"><a href="#基础语法模板" class="headerlink" title="基础语法模板"></a>基础语法模板</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="规范的基本说明："><a href="#规范的基本说明：" class="headerlink" title="规范的基本说明："></a>规范的基本说明：</h4><p><code>type</code>代表本次提交的类型，是新增feature还是修复bug或是修改文档等，主要类型及其说明如下：</p>
+<ul>
+<li>feat：新增feature</li>
+<li>fix: 修复bug</li>
+<li>docs: 仅仅修改了文档，比如README, CHANGELOG, CONTRIBUTE等等</li>
+<li>style: 仅仅修改了空格、格式缩进、都好等等，不改变代码逻辑</li>
+<li>refactor: 代码重构，没有加新功能或者修复bug</li>
+<li>perf: 优化相关，比如提升性能、体验</li>
+<li>test: 测试用例，包括单元测试、集成测试等</li>
+<li>chore: 改变构建流程、或者增加依赖库、工具等</li>
+<li>revert: 回滚到上一个版本</li>
+</ul>
+<p><code>scope</code>表明本次修改的范围或者模块，例如users。</p>
+<p><code>subject</code>是对变更内容的简要描述。</p>
+<p><code>BLANK LINE</code>不用说，就是字面意思的空白行。</p>
+<p><code>body</code>是对本次变更更加详细的说明，可以是发起本次变更的原因以及本次变更的解决思路和方法等。</p>
+<p><code>footer</code>处填写相关连接。</p>
+<h4 id="格式要求："><a href="#格式要求：" class="headerlink" title="格式要求："></a>格式要求：</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 标题行：50个字符以内，描述主要变更内容</span><br><span class="line"># （我是空行）</span><br><span class="line"># 主体内容：更详细的说明文本，建议72个字符以内。 需要描述的信息包括:</span><br><span class="line"># （我是空行）</span><br><span class="line"># * 为什么这个变更是必须的? 它可能是用来修复一个bug，增加一个feature，提升性能、可靠性、稳定性等等</span><br><span class="line"># * 他如何解决这个问题? 具体描述解决问题的步骤</span><br><span class="line"># * 是否存在副作用、风险? </span><br><span class="line">#</span><br><span class="line"># 尾部：如果需要的话可以添加一个链接到issue地址或者其它文档，或者关闭某个issue。</span><br></pre></td></tr></table></figure>
+<h3 id="相关参考-1"><a href="#相关参考-1" class="headerlink" title="相关参考"></a>相关参考</h3><p><a href="https://ivweb.io/topic/58ba702bdb35a9135d42f83d" target="_blank" rel="noopener">Git commit message和工作流规范</a></p>
+<h2 id="API接口文档规范"><a href="#API接口文档规范" class="headerlink" title="API接口文档规范"></a>API接口文档规范</h2><p>我写过的第一个接口文档，是word形式的，写了大概三个接口就受不了了，word写接口，太不舒服了，后来用<code>showdoc</code>工具写接口文档，好用了很多，但是没有很好地体现文档的维护记录，再后来，参加工作之后接触了解了<code>apidoc</code>，相对而言，它也算主流之一，使用简单并且支持多语言，所以就开始使用<code>apidoc</code>作为生成接口文档的工具，接口文档在代码中以注解的形式书写，然后通过<code>apidoc</code>的相关命令生成接口文档，配合<code>git</code>刚好可以很好地体现接口文档的维护记录。当然，还有其他选择，个人喜好而已。</p>
+<h2 id="apidoc编写接口示例"><a href="#apidoc编写接口示例" class="headerlink" title="apidoc编写接口示例"></a>apidoc编写接口示例</h2><p>代码实例：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @api &#123;POST&#125; /user create a user</span></span><br><span class="line"><span class="comment"> * @apiDescription 用户新增的接口</span></span><br><span class="line"><span class="comment"> * @apiName 用户注册</span></span><br><span class="line"><span class="comment"> * @apiGroup User</span></span><br><span class="line"><span class="comment"> * @apiUse userParams</span></span><br><span class="line"><span class="comment"> * @apiSuccessExample Success-Response:</span></span><br><span class="line"><span class="comment"> * &#123;</span></span><br><span class="line"><span class="comment"> *   errorCode: 0,</span></span><br><span class="line"><span class="comment"> *   status: 200,</span></span><br><span class="line"><span class="comment"> *   data: &#123;</span></span><br><span class="line"><span class="comment"> *     _id: '123',</span></span><br><span class="line"><span class="comment"> *     name: 'morehao',</span></span><br><span class="line"><span class="comment"> *     createdAt: '20180913',</span></span><br><span class="line"><span class="comment"> *     updatedAt: '20180913',</span></span><br><span class="line"><span class="comment"> *     lastLogin: '暂未登录'</span></span><br><span class="line"><span class="comment"> *   &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * @apiErrorExample &#123;json&#125; Error-Response:</span></span><br><span class="line"><span class="comment"> *  &#123;</span></span><br><span class="line"><span class="comment"> *    status: 200,</span></span><br><span class="line"><span class="comment"> *    errorCode: 20100,</span></span><br><span class="line"><span class="comment"> *    errorMsg: '该用户已经存在'</span></span><br><span class="line"><span class="comment"> *  &#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></p>
+<p>截图实例：<br><img src="http://p8t43f2za.bkt.clouddn.com/apidoc-screen1.jpg" alt=""><br><img src="http://p8t43f2za.bkt.clouddn.com/apidoc-screen2.jpg" alt=""></p>
+<h3 id="相关参考-2"><a href="#相关参考-2" class="headerlink" title="相关参考"></a>相关参考</h3><p>这里只确定API接口文档的生成方式，详细的使用后面也不会过多涉及，下面附上相关链接。</p>
+<p><a href="http://apidocjs.com/" target="_blank" rel="noopener">apidoc官方网站</a></p>
+<p><a href="http://apidocjs.com/example/" target="_blank" rel="noopener">apidoc文档的官方示例</a></p>
+<p>下面附上项目的github地址：</p>
+<p><a href="https://github.com/morehao/express-blog" target="_blank" rel="noopener">项目地址</a></p>
+<p>我的简书：</p>
+<p><a href="https://www.jianshu.com/u/bdde2378d666" target="_blank" rel="noopener">毛浩先生的简书博客</a></p>
 
-开发环境
-Node相关：下载链接
-MongoDB相关：下载链接
-
-Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不再赘述。
-相关规范相关规范主要包括
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/19/Node-Express搭建个人博客（纯后端）-开发准备（二）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -476,203 +508,28 @@ Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://morehao.github.io/2018/09/18/Node-Express搭建个人博客（纯后端）-前言（一）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="毛浩先生">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="毛浩先生">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/09/18/Node-Express搭建个人博客（纯后端）-前言（一）/" itemprop="url">Node+Express搭建个人博客（纯后端）-前言（一）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-18T17:26:33+08:00">
-                2018-09-18
-              </time>
+              <a href="/2018/09/18/Node-Express搭建个人博客（纯后端）-前言（一）/" rel="next" title="Node+Express搭建个人博客（纯后端）-前言（一）">
+                <i class="fa fa-chevron-left"></i> Node+Express搭建个人博客（纯后端）-前言（一）
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node-js学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Node.js学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/09/18/Node-Express搭建个人博客（纯后端）-前言（一）/" class="leancloud_visitors" data-flag-title="Node+Express搭建个人博客（纯后端）-前言（一）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  672字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&asymp;</span>
-                
-                <span title="阅读时长">
-                  2分钟
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          项目的目的是什么首先说明，项目的目的并不是写教程，我目前的水平还处于菜鸟级别，若有指正，菜鸟必改之。
-我刚刚开始学习编程的时候，我的老师告诉我先做一个个人博客来练手，当时没怎么听，也只是走了个过场，刚好可以完成下当年没有做的博客。同时，通过完成个人博客项目，我想要把之前学习到的、接触到的和工作中使用
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/18/Node-Express搭建个人博客（纯后端）-前言（一）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -682,403 +539,27 @@ Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://morehao.github.io/2018/06/26/Node回调函数改写/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="毛浩先生">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="毛浩先生">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/26/Node回调函数改写/" itemprop="url">Node回调函数改写</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-26T16:16:48+08:00">
-                2018-06-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Node-js学习/" itemprop="url" rel="index">
-                    <span itemprop="name">Node.js学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/06/26/Node回调函数改写/" class="leancloud_visitors" data-flag-title="Node回调函数改写">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  200字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&asymp;</span>
-                
-                <span title="阅读时长">
-                  1分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          以读取文件为例，首先，创建文件a.txt，文件内写入内容Hello world!。
-回调函数写法const fs = require('fs')fs.readFile('./a.txt', 'utf-8', (err, data) =&gt; &#123;  if (err) throw err  
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/26/Node回调函数改写/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://morehao.github.io/2018/05/09/使用VScode断点调试Node-js/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="毛浩先生">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="毛浩先生">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/09/使用VScode断点调试Node-js/" itemprop="url">使用VScode断点调试Node.js</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-09T21:31:08+08:00">
-                2018-05-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/工具使用/" itemprop="url" rel="index">
-                    <span itemprop="name">工具使用</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/05/09/使用VScode断点调试Node-js/" class="leancloud_visitors" data-flag-title="使用VScode断点调试Node.js">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  341字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长&asymp;</span>
-                
-                <span title="阅读时长">
-                  1分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          这是个告别console的开始【手动捂脸】。
-首先，打开虫子，进入调试页面。
-点击绿色的按钮，开始调试。
-选择环境Node.js。
-选择完成之后，生成一个.vscode文件夹，文件夹下有个launch.json文件。
-将【program】字段的值修改为自己程序的入口文件，开始调试时会从这个入口启动程
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/09/使用VScode断点调试Node-js/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTgwNC8xNjMzMQ=="></div>
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
 
   
 
 
-          </div>
-          
-
-
-          
 
         </div>
         
@@ -1099,8 +580,17 @@ Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1171,6 +661,22 @@ Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#技术栈"><span class="nav-number">1.</span> <span class="nav-text">技术栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开发环境"><span class="nav-number">2.</span> <span class="nav-text">开发环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关规范"><span class="nav-number">3.</span> <span class="nav-text">相关规范</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码规范"><span class="nav-number">3.1.</span> <span class="nav-text">代码规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工具配合"><span class="nav-number">3.1.1.</span> <span class="nav-text">工具配合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关参考"><span class="nav-number">3.1.2.</span> <span class="nav-text">相关参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-commit规范"><span class="nav-number">3.2.</span> <span class="nav-text">Git commit规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Git-commit日志基本规范"><span class="nav-number">3.2.1.</span> <span class="nav-text">Git commit日志基本规范</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础语法模板"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">基础语法模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#规范的基本说明："><span class="nav-number">3.2.1.2.</span> <span class="nav-text">规范的基本说明：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#格式要求："><span class="nav-number">3.2.1.3.</span> <span class="nav-text">格式要求：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关参考-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">相关参考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API接口文档规范"><span class="nav-number">3.3.</span> <span class="nav-text">API接口文档规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#apidoc编写接口示例"><span class="nav-number">3.4.</span> <span class="nav-text">apidoc编写接口示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关参考-2"><span class="nav-number">3.4.1.</span> <span class="nav-text">相关参考</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1314,6 +820,10 @@ Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1342,6 +852,17 @@ Node与MongoDB的下载与安装，请自行百度或谷歌，遍地都是，不
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
