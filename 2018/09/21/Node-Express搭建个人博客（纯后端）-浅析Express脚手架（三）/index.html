@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-myblog.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-myblog.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-myblog.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="morehao,Node.js,Express,MongoDB,Koa,Egg.js,JavaScript,js,javascript" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="既然我们的个人博客项目使用的是Express框架，那我们在项目初始化之前，先从【初始化一个Express项目】说起，分析下默认的Express脚手架。 本文篇幅稍稍有点长，超出了计划，请耐心阅读【手动捂脸】。 初始化一个Express项目在Express框架的官方文档中，是通过生成器工具express-generator快速生成了一个Express应用，相关步骤如下： 安装Express生成器np">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node+Express搭建个人博客（纯后端）-浅析Express脚手架（三）">
+<meta property="og:url" content="https://morehao.github.io/2018/09/21/Node-Express搭建个人博客（纯后端）-浅析Express脚手架（三）/index.html">
+<meta property="og:site_name" content="毛浩先生">
+<meta property="og:description" content="既然我们的个人博客项目使用的是Express框架，那我们在项目初始化之前，先从【初始化一个Express项目】说起，分析下默认的Express脚手架。 本文篇幅稍稍有点长，超出了计划，请耐心阅读【手动捂脸】。 初始化一个Express项目在Express框架的官方文档中，是通过生成器工具express-generator快速生成了一个Express应用，相关步骤如下： 安装Express生成器np">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p8t43f2za.bkt.clouddn.com/hello-express.jpg">
+<meta property="og:image" content="http://p8t43f2za.bkt.clouddn.com/hello-express.jpg">
+<meta property="og:updated_time" content="2018-09-21T09:48:12.235Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node+Express搭建个人博客（纯后端）-浅析Express脚手架（三）">
+<meta name="twitter:description" content="既然我们的个人博客项目使用的是Express框架，那我们在项目初始化之前，先从【初始化一个Express项目】说起，分析下默认的Express脚手架。 本文篇幅稍稍有点长，超出了计划，请耐心阅读【手动捂脸】。 初始化一个Express项目在Express框架的官方文档中，是通过生成器工具express-generator快速生成了一个Express应用，相关步骤如下： 安装Express生成器np">
+<meta name="twitter:image" content="http://p8t43f2za.bkt.clouddn.com/hello-express.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://morehao.github.io/2018/09/21/Node-Express搭建个人博客（纯后端）-浅析Express脚手架（三）/"/>
+
+
+
+
+
+  <title>Node+Express搭建个人博客（纯后端）-浅析Express脚手架（三） | 毛浩先生</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-119517556-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?caeb8d625234282478a3638f245607ea";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">毛浩先生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">来自bug界的有志小青年！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            文章
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://morehao.github.io/2018/09/21/Node-Express搭建个人博客（纯后端）-浅析Express脚手架（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="毛浩先生">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="毛浩先生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node+Express搭建个人博客（纯后端）-浅析Express脚手架（三）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-21T17:45:38+08:00">
+                2018-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js学习/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/09/21/Node-Express搭建个人博客（纯后端）-浅析Express脚手架（三）/" class="leancloud_visitors" data-flag-title="Node+Express搭建个人博客（纯后端）-浅析Express脚手架（三）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,776字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长&asymp;</span>
+                
+                <span title="阅读时长">
+                  11分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>既然我们的个人博客项目使用的是<code>Express</code>框架，那我们在项目初始化之前，先从【初始化一个Express项目】说起，分析下默认的Express脚手架。</p>
+<p>本文篇幅稍稍有点长，超出了计划，请耐心阅读【手动捂脸】。</p>
+<h1 id="初始化一个Express项目"><a href="#初始化一个Express项目" class="headerlink" title="初始化一个Express项目"></a>初始化一个Express项目</h1><p>在<code>Express</code>框架的官方文档中，是通过生成器工具<code>express-generator</code>快速生成了一个Express应用，相关步骤如下：</p>
+<p>安装Express生成器<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install -g express-generator</span><br></pre></td></tr></table></figure></p>
+<p>初始化一个Express应用<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">express express-app</span><br></pre></td></tr></table></figure></p>
+<p>如此便生成了一个名为<code>express-app</code>的Express应用。</p>
+<h2 id="Express应用目录结构概览"><a href="#Express应用目录结构概览" class="headerlink" title="Express应用目录结构概览"></a>Express应用目录结构概览</h2><p>首先来看一下这个Express应用的目录结构，目录结构如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">express-app</span><br><span class="line">│  app.js</span><br><span class="line">│  package.json</span><br><span class="line">│  </span><br><span class="line">├─bin</span><br><span class="line">│      www</span><br><span class="line">│      </span><br><span class="line">├─public</span><br><span class="line">│  ├─images</span><br><span class="line">│  ├─javascripts</span><br><span class="line">│  └─stylesheets</span><br><span class="line">│          style.css</span><br><span class="line">│          </span><br><span class="line">├─routes</span><br><span class="line">│      index.js</span><br><span class="line">│      users.js</span><br><span class="line">│      </span><br><span class="line">└─views</span><br><span class="line">        error.jade</span><br><span class="line">        index.jade</span><br><span class="line">        layout.jade</span><br></pre></td></tr></table></figure></p>
+<h2 id="目录结构简介"><a href="#目录结构简介" class="headerlink" title="目录结构简介"></a>目录结构简介</h2><ul>
+<li><code>app.js</code>应用的初始化文件，包括引入应用程序的基础依赖项、设置视图即view的引擎目录以及模板、设置静态资源路径、配置通用的中间件、引入路由和一些错误处理中间件等。</li>
+<li><code>package.json</code>应用的配置文件，文件内包含程序的基础信息、启动脚本和依赖包等。</li>
+<li><code>bin/www</code>应用的启动文件，文件内包含引用要启动的应用、设置应用监听的端口和启动http服务等。</li>
+<li><code>public/**</code>应用的静态资源文件目录，该目录下的文件资源不需要经过文件映射就可以直接访问。</li>
+<li><code>routes/**</code>应用的路由文件，这些路由文件中设置的接口最终会以指定的HTTP请求方式暴露给用户，并在用户请求之后将结果返回。</li>
+<li><code>views</code>应用的视图文件，在<code>app.js</code>中设置好视图引擎和模板之后，该目录即为应用视图的根目录，然后路由文件就会根据<code>app.js</code>中的设置加载并渲染该目录下的视图文件。</li>
+</ul>
+<h2 id="应用启动"><a href="#应用启动" class="headerlink" title="应用启动"></a>应用启动</h2><p>首先，先要安装应用的依赖包。<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<p>然后，启动程序。<br><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">node bin/www</span><br></pre></td></tr></table></figure></p>
+<p>查看<code>bin/wwww</code>文件，拷打应用默认监听的端口是3000，然后访问<code>localhost:3000</code>,看到如下界面：<br><img src="http://p8t43f2za.bkt.clouddn.com/hello-express.jpg" alt=""></p>
+<p>看到上面的页面，说明我们的应用启动成功，并且成功地访问到了视图引擎目录<code>view</code>中的页面。</p>
+<h2 id="文件详解"><a href="#文件详解" class="headerlink" title="文件详解"></a>文件详解</h2><h3 id="app-js文件详解"><a href="#app-js文件详解" class="headerlink" title="app.js文件详解"></a>app.js文件详解</h3><p>以下是初始化的Express应用中的已经做了一些注释说明后的<code>app.js</code>文件中的代码：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入依赖包</span></span><br><span class="line"><span class="keyword">var</span> createError = <span class="built_in">require</span>(<span class="string">'http-errors'</span>);</span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">var</span> cookieParser = <span class="built_in">require</span>(<span class="string">'cookie-parser'</span>);</span><br><span class="line"><span class="keyword">var</span> logger = <span class="built_in">require</span>(<span class="string">'morgan'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 引入路由文件</span></span><br><span class="line"><span class="keyword">var</span> indexRouter = <span class="built_in">require</span>(<span class="string">'./routes/index'</span>);</span><br><span class="line"><span class="keyword">var</span> usersRouter = <span class="built_in">require</span>(<span class="string">'./routes/users'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建应用实例</span></span><br><span class="line"><span class="keyword">var</span> app = express();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置视图目录和模板引擎</span></span><br><span class="line">app.set(<span class="string">'views'</span>, path.join(__dirname, <span class="string">'views'</span>));</span><br><span class="line">app.set(<span class="string">'view engine'</span>, <span class="string">'jade'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以下皆为注册中间件</span></span><br><span class="line"><span class="comment">// 内置中间件</span></span><br><span class="line">app.use(logger(<span class="string">'dev'</span>));</span><br><span class="line">app.use(express.json());</span><br><span class="line">app.use(express.urlencoded(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">app.use(cookieParser());</span><br><span class="line">app.use(express.static(path.join(__dirname, <span class="string">'public'</span>)));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 路由中间件</span></span><br><span class="line">app.use(<span class="string">'/'</span>, indexRouter);</span><br><span class="line">app.use(<span class="string">'/users'</span>, usersRouter);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 404错误处理中间件</span></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  next(createError(<span class="number">404</span>));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 错误处理中间件</span></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">err, req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// set locals, only providing error in development</span></span><br><span class="line">  res.locals.message = err.message;</span><br><span class="line">  res.locals.error = req.app.get(<span class="string">'env'</span>) === <span class="string">'development'</span> ? err : &#123;&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// render the error page</span></span><br><span class="line">  res.status(err.status || <span class="number">500</span>);</span><br><span class="line">  res.render(<span class="string">'error'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导出app实例对象</span></span><br><span class="line"><span class="built_in">module</span>.exports = app;</span><br></pre></td></tr></table></figure></p>
+<p>根据代码中的注释，我们可以看到，<code>app.js</code>的作用主要是初始化Express应用的一些设置，包括引入依赖包、引入路由文件、注册各类中间件的一些操作。</p>
+<h3 id="www文件详解"><a href="#www文件详解" class="headerlink" title="www文件详解"></a>www文件详解</h3><p>以下是添加了注释后的应用启动文件<code>bin/www</code>中的代码：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  引入依赖</span></span><br><span class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'../app'</span>);</span><br><span class="line"><span class="keyword">var</span> debug = <span class="built_in">require</span>(<span class="string">'debug'</span>)(<span class="string">'express:server'</span>);</span><br><span class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置应用监听的端口</span></span><br><span class="line"><span class="keyword">var</span> port = normalizePort(process.env.PORT || <span class="string">'3000'</span>);</span><br><span class="line">app.set(<span class="string">'port'</span>, port);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建http服务器</span></span><br><span class="line"><span class="keyword">var</span> server = http.createServer(app);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听端口</span></span><br><span class="line">server.listen(port);</span><br><span class="line">server.on(<span class="string">'error'</span>, onError);</span><br><span class="line">server.on(<span class="string">'listening'</span>, onListening);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 格式化应用监听的端口</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">normalizePort</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> port = <span class="built_in">parseInt</span>(val, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">isNaN</span>(port)) &#123;</span><br><span class="line">    <span class="comment">// named pipe</span></span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (port &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// port number</span></span><br><span class="line">    <span class="keyword">return</span> port;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// http的错误监听函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onError</span>(<span class="params">error</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (error.syscall !== <span class="string">'listen'</span>) &#123;</span><br><span class="line">    <span class="keyword">throw</span> error;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> bind = <span class="keyword">typeof</span> port === <span class="string">'string'</span></span><br><span class="line">    ? <span class="string">'Pipe '</span> + port</span><br><span class="line">    : <span class="string">'Port '</span> + port;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// handle specific listen errors with friendly messages</span></span><br><span class="line">  <span class="keyword">switch</span> (error.code) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'EACCES'</span>:</span><br><span class="line">      <span class="built_in">console</span>.error(bind + <span class="string">' requires elevated privileges'</span>);</span><br><span class="line">      process.exit(<span class="number">1</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">'EADDRINUSE'</span>:</span><br><span class="line">      <span class="built_in">console</span>.error(bind + <span class="string">' is already in use'</span>);</span><br><span class="line">      process.exit(<span class="number">1</span>);</span><br><span class="line">      <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">throw</span> error;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// http端口监听函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">onListening</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> addr = server.address();</span><br><span class="line">  <span class="keyword">var</span> bind = <span class="keyword">typeof</span> addr === <span class="string">'string'</span></span><br><span class="line">    ? <span class="string">'pipe '</span> + addr</span><br><span class="line">    : <span class="string">'port '</span> + addr.port;</span><br><span class="line">  debug(<span class="string">'Listening on '</span> + bind);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>bin/wwww</code>文件的内容就很简单了，就是创建HTTP服务，监听端口和错误。</p>
+<h3 id="router-详解"><a href="#router-详解" class="headerlink" title="router/**详解"></a>router/**详解</h3><p><code>router/**</code>包含了路由文件，每个路由文件中包含了不同HTTP请求对用的路由以及逻辑处理函数，此处以<code>router/index.js</code>文件为例，以下是<code>index.js</code>文件的代码：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 引入依赖包</span></span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建路由对象</span></span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取首页</span></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  res.render(<span class="string">'index'</span>, &#123; <span class="attr">title</span>: <span class="string">'Express'</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure></p>
+<p>路由文件主要相应相应的HTTP请求，然后执行函数进行相应的逻辑处理，以上代码，是对<code>GET</code>请求的响应，然后渲染<code>view</code>目录下的<code>index.jade</code>页面（在<code>app.js</code>中设置了视图目录和模板引擎），同时传递数据<code>{title: &#39;Express&#39;}</code>给<code>index.jade</code>页面。</p>
+<h3 id="view-详解"><a href="#view-详解" class="headerlink" title="view/**详解"></a>view/**详解</h3><p><code>view/**</code>主要存放应用的页面，以<code>view/index.jade</code>为例，代码如下：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">extends layout</span><br><span class="line"></span><br><span class="line">block content</span><br><span class="line">  h1= title</span><br><span class="line">  p Welcome to #&#123;title&#125;</span><br></pre></td></tr></table></figure></p>
+<p>页面文件主要是接收路由文件传递的数据，然后生成渲染后的页面给客户端，在上一步，传递了数据<code>{title: &#39;Express&#39;}</code>给<code>index.jade</code>页面，所以真实的页面应该是如下的代码：<br><figure class="highlight html"><table><tr><td class="code"><pre><span class="line">extends layout</span><br><span class="line"></span><br><span class="line">block content</span><br><span class="line">  h1= 'Express'</span><br><span class="line">  p Welcome to Express</span><br></pre></td></tr></table></figure></p>
+<p>然后客户端就看到了如下的页面：<br><img src="http://p8t43f2za.bkt.clouddn.com/hello-express.jpg" alt=""></p>
+<h2 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h2><h3 id="缺点分析"><a href="#缺点分析" class="headerlink" title="缺点分析"></a>缺点分析</h3><p>在实际开发中，我们项目的路由文件的数目会因项目复杂度而不同，当项目足够复杂时，我们需要引入的路由文件和需要注册的路由就会更多，同时除了应用本身的404和错误处理中间件之外，还可能根据实际需求新增我们自定义的中间件，如果这些初始化的代码都放置于<code>app.js</code>中，无疑，<code>app.js</code>文件会越来越大越来越臃肿，这并不是一个很好的选择。同时路由和路由对应的处理函数在一个文件中，这样的处理不够优雅，不便于维护，所以进行路由分离显得很有必要性。当然，这个应用只是生成器工具初始化的一个简单脚手架，并不是最终的样子。</p>
+<h3 id="MVC框架简介"><a href="#MVC框架简介" class="headerlink" title="MVC框架简介"></a>MVC框架简介</h3><p><code>MVC</code>框架是一个经典的架构模式，其中<code>MVC</code>分别指的是：</p>
+<ul>
+<li>M: Model(模型，包含数据和数据处理方法)</li>
+<li>V: View(视图，提供视图，即页面)</li>
+<li>Controller: (控制层，负责逻辑处理)</li>
+</ul>
+<p>对应的，在Node中的<code>MVC</code>框架，处理流程应该是以下步骤：</p>
+<ol>
+<li>服务端收到客户端的请求</li>
+<li>路由层开始处理服务端接收到的请求，匹配相应的路由</li>
+<li>匹配到相应的路由之后调用对应的<code>controller</code>（即对应的逻辑处理函数）</li>
+<li><code>controller</code>接收到请求之后，向<code>model</code>层取用数据</li>
+<li><code>model</code>层接收到<code>controller</code>层取用数据的请求之后，将数据返回给<code>controller</code>层</li>
+<li><code>controller</code>层收到数据之后进行相应的逻辑处理之后，将数据返回给<code>view</code>层</li>
+<li><code>view</code>层收到<code>controller</code>层返回的数据之后，根据相应的视图模板和数据组装之后，返回一个渲染过的页面</li>
+<li>服务端将上一步的结果返回给客户端</li>
+</ol>
+<p>注：在以上的步骤中，可能会存在执行中间件的情况。</p>
+<p>在对Express框架初始化的应用缺点和<code>MVC</code>有了简单了解之后，接下来就是根据以上两步的分析改进这个简单的脚手架应用了。</p>
+<h3 id="启动文件和初始化文件合二为一"><a href="#启动文件和初始化文件合二为一" class="headerlink" title="启动文件和初始化文件合二为一"></a>启动文件和初始化文件合二为一</h3><p>在<code>Express</code>的官方文档中关于<code>app.listen()</code>方法的<a href="https://expressjs.com/zh-cn/4x/api.html#app.listen" target="_blank" rel="noopener">介绍</a>中，提到：</p>
+<blockquote>
+<p>Binds and listens for connections on the specified host and port. This method is identical to Node’s http.Server.listen().</p>
+</blockquote>
+<p>所以我们完全可以使用<code>app.listen()</code>方法替代<code>bin/www</code>中的代码逻辑，一行代码替代一个应用的启动文件，何乐而不为呢。</p>
+<p>既然要合二为一，我们将程序的启动文件和初始化文件都合并到<code>app.js</code>中，这样的话，就不要要导出<code>app</code>对象给其他文件引入使用了，所以，首先删除<code>app.js</code>文件中的<code>module.exports = app;</code>,然后，添加一行代码即可:<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">app.listen(<span class="number">3000</span>)</span><br></pre></td></tr></table></figure></p>
+<p>修改<code>app.js</code>之后，访问<code>localhost:3000</code>,依然可以正常访问到上面的页面，说明修改无误。</p>
+<h3 id="抽离路由层"><a href="#抽离路由层" class="headerlink" title="抽离路由层"></a>抽离路由层</h3><p>参照<code>MVC</code>框架，路由层的工作是根据匹配客户端的请求路径匹配相应的路由然后调用相应的<code>controller</code>，以下代码为示例模板：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 访问首页</span></span><br><span class="line">app.get(<span class="string">'/'</span>, IndexController.index)</span><br></pre></td></tr></table></figure></p>
+<p>在该小节，我们仅仅抽离出路由层，一步一步的来。</p>
+<p>首先，在项目根目录下创建<code>route.js</code>文件,该文件中的代码如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">module.exports = function (app) &#123;</span><br><span class="line">  app.get(&apos;/&apos;, function(req, res, next) &#123;</span><br><span class="line">    console.log(&apos;new index&apos;)</span><br><span class="line">    res.render(&apos;index&apos;, &#123; title: &apos;Express&apos; &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在<code>app.js</code>中添加如下代码：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var routes = require(&apos;./routes&apos;)</span><br><span class="line">routes(app)</span><br></pre></td></tr></table></figure></p>
+<p>注：<code>routes(app)</code>需要在创建应用实例之后，即<code>var app = express()</code>之后。</p>
+<p>同时，删除<code>app.js</code>中的<code>// app.use(&#39;/&#39;, indexRouter)</code>。</p>
+<p>最后，访问<code>localhost:3000</code>,依然可以正常访问到上面的页面，并且在控制台看到输出的<code>new index</code>,说明修改无误。</p>
+<h3 id="抽离controller层"><a href="#抽离controller层" class="headerlink" title="抽离controller层"></a>抽离controller层</h3><p>首先，在根目录下创建<code>controller/index.js</code>，在<code>index.js</code>中编写如下代码：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  index (req, res, next) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'controller'</span>)</span><br><span class="line">    res.render(<span class="string">'index'</span>, &#123; <span class="attr">title</span>: <span class="string">'Express'</span> &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后，将<code>routes.js</code>修改为如下代码：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> IndexController = <span class="built_in">require</span>(<span class="string">'./controller/index'</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">app</span>) </span>&#123;</span><br><span class="line">  app.get(<span class="string">'/'</span>, IndexController.index)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后，访问<code>localhost:3000</code>,依然可以正常访问到上面的页面，并且在控制台看到输出的<code>controller</code>,说明修改无误。</p>
+<h3 id="抽离middleware层"><a href="#抽离middleware层" class="headerlink" title="抽离middleware层"></a>抽离middleware层</h3><p>首先，在根目录下创建<code>middlewares/not-find.js</code>，在文件中编写以下代码：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> createError = <span class="built_in">require</span>(<span class="string">'http-errors'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  next(createError(<span class="number">404</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在<code>app.js</code>中，引入相关中间件：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> notFind = <span class="built_in">require</span>(<span class="string">'./middlewares/not-find'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>然后修改404错误处理中间件为：<br><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 404错误处理中间件</span></span><br><span class="line">app.use(notFind);</span><br></pre></td></tr></table></figure></p>
+<p>最后，访问<code>localhost:3000/asasasasasa</code>,这是一个不存在的路径，应该会出现404页面，发现可以正常访问到404页面，说明修改无误。</p>
+<p>其他自定义中间件的处理，同理。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>至此，我们对生成器工具<code>express-generator</code>生成的Express应用的改造完毕，并且接下来初始化自己的应用可以不再使用<code>express-generator</code>，可以根据自己的需求，参照以上修改，进行项目初始化搭建。</p>
+<p>下面附上项目的github地址：</p>
+<p><a href="https://github.com/morehao/express-blog" target="_blank" rel="noopener">项目地址</a></p>
+<p>我的简书：</p>
+<p><a href="https://www.jianshu.com/u/bdde2378d666" target="_blank" rel="noopener">毛浩先生的简书博客</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/19/Node-Express搭建个人博客（纯后端）-开发准备（二）/" rel="next" title="Node+Express搭建个人博客（纯后端）-开发准备（二）">
+                <i class="fa fa-chevron-left"></i> Node+Express搭建个人博客（纯后端）-开发准备（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTgwNC8xNjMzMQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="毛浩先生" />
+            
+              <p class="site-author-name" itemprop="name">毛浩先生</p>
+              <p class="site-description motion-element" itemprop="description">morehao'blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/morehao" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="QQ-mail:morehao@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化一个Express项目"><span class="nav-number">1.</span> <span class="nav-text">初始化一个Express项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Express应用目录结构概览"><span class="nav-number">1.1.</span> <span class="nav-text">Express应用目录结构概览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录结构简介"><span class="nav-number">1.2.</span> <span class="nav-text">目录结构简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用启动"><span class="nav-number">1.3.</span> <span class="nav-text">应用启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件详解"><span class="nav-number">1.4.</span> <span class="nav-text">文件详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#app-js文件详解"><span class="nav-number">1.4.1.</span> <span class="nav-text">app.js文件详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#www文件详解"><span class="nav-number">1.4.2.</span> <span class="nav-text">www文件详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#router-详解"><span class="nav-number">1.4.3.</span> <span class="nav-text">router/**详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#view-详解"><span class="nav-number">1.4.4.</span> <span class="nav-text">view/**详解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进"><span class="nav-number">1.5.</span> <span class="nav-text">改进</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点分析"><span class="nav-number">1.5.1.</span> <span class="nav-text">缺点分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC框架简介"><span class="nav-number">1.5.2.</span> <span class="nav-text">MVC框架简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动文件和初始化文件合二为一"><span class="nav-number">1.5.3.</span> <span class="nav-text">启动文件和初始化文件合二为一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽离路由层"><span class="nav-number">1.5.4.</span> <span class="nav-text">抽离路由层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽离controller层"><span class="nav-number">1.5.5.</span> <span class="nav-text">抽离controller层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽离middleware层"><span class="nav-number">1.5.6.</span> <span class="nav-text">抽离middleware层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.5.7.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">毛浩先生</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("Ifm153p3gTusxjeVF0rIvp3Y-gzGzoHsz", "wXAPuaPpFXEwAHKMnCEst89z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
